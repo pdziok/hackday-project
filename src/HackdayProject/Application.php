@@ -35,11 +35,12 @@ class Application extends \Silex\Application
             'cors.allowOrigin' => '*',
         ));
         $this->after($this['cors']);
-//        $this->register(new JsonSchemaValidatorServiceProvider(), [
-//            'json.request.validator.schemaMap' => [
-//            ]
-//        ]);
-//        $this->before($this['json.request.validator']);
+        $this->register(new JsonSchemaValidatorServiceProvider(), [
+            'json.request.validator.schemaMap' => [
+                'entry.controller:createEntryAction' => 'entry.json',
+             ]
+        ]);
+        $this->before($this['json.request.validator']);
 
         $this->register(new DoctrineServiceProvider(), [
             'db.options' => $this['config']['mysql']
