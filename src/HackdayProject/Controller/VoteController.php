@@ -64,15 +64,4 @@ class VoteController
 
         return new JsonResponse($vote->toArray(), 201);
     }
-
-    public function getImageAction($id)
-    {
-        $image = $this->em->find('HackdayProject\Entity\Image', $id);
-
-        if (!$image) {
-            throw new NotFound('Image cannot be found');
-        }
-
-        return new JsonResponse($image->toArray());
-    }
 }
