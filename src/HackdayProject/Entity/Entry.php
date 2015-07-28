@@ -42,7 +42,7 @@ class Entry
     private $longitude;
 
     /**
-     * @OneToMany(targetEntity="Image", mappedBy="entry")
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="entry")
      **/
     private $images;
 

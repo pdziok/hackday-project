@@ -29,8 +29,8 @@ class Image
     /**
      * @var Entry
      *
-     * @ManyToOne(targetEntity="Entry", inversedBy="images")
-     * @JoinColumn(name="entry_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Entry", inversedBy="images")
+     * @ORM\JoinColumn(name="entry_id", referencedColumnName="id")
      **/
     private $entry;
 
