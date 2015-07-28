@@ -51,19 +51,24 @@ class EntryController
 
         $map = [
             'id' => 'e.id',
-            'rating' => 'rating'
+            'rating' => 'rating',
+            'votesCount' => 'votesCount'
         ];
 
         if (isset($map[$orderBy])) {
             $orderBy = $map[$orderBy];
         }
 
+        $limit = (int) $request->get('limit', 10);
+
         $qb = $this->em->createQueryBuilder();
         $qb->select('e')
             ->addSelect('(SELECT SUM(v.value) FROM HackdayProject\Entity\Vote v WHERE v.entry = e.id) as rating')
+            ->addSelect('(SELECT COUNT(v2.id) FROM HackdayProject\Entity\Vote v2 WHERE v2.entry = e.id) as votesCount')
            ->from('HackdayProject\Entity\Entry', 'e')
            ->leftJoin('e.image', 'i')
-           ->orderBy($orderBy, $orderDirection);
+           ->orderBy($orderBy, $orderDirection)
+            ->setMaxResults($limit);
 
         $entries = $qb->getQuery()->getResult();
 
