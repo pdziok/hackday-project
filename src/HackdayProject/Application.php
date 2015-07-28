@@ -33,6 +33,7 @@ class Application extends \Silex\Application
 
         $this->register(new CorsServiceProvider(), array(
             'cors.allowOrigin' => '*',
+            'cors.allowCredentials' => true
         ));
         $this->after($this['cors']);
         $this->register(new JsonSchemaValidatorServiceProvider(), [
