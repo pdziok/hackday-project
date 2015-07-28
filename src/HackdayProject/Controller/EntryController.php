@@ -19,23 +19,7 @@ class EntryController
         $this->em = $em;
     }
 
-    private function convertEntryToArray(Entry $entry)
-    {
-        $result = [
-            'id' => $entry->getId(),
-            'name' => $entry->getName(),
-            'latitude' => $entry->getLatitude(),
-            'longitude' => $entry->getLongitude(),
-        ];
 
-        if ($entry->getImages()->count()) {
-            foreach($entry->getImages() as $image) {
-                $result['images'][] = $image->toArray();
-            }
-        }
-
-        return $result;
-    }
 
     public function getEntriesAction(Request $request)
     {
@@ -47,7 +31,11 @@ class EntryController
 
 
         $entries = $qb->getQuery()->getResult();
-        $result = array_map([$this, 'convertEntryToArray'], $entries);
+
+        $result = [];
+        foreach($entries as $entry) {
+            $result[] = $entry->toArray();
+        }
 
         return new JsonResponse($result);
     }
@@ -65,8 +53,6 @@ class EntryController
         $this->em->persist($entry);
         $this->em->flush();
 
-
-
-        return new JsonResponse($this->convertEntryToArray($entry), 201);
+        return new JsonResponse($entry->toArray(), 201);
     }
 }

@@ -122,4 +122,28 @@ class Entry
     {
         $this->name = $name;
     }
+
+    /**
+     * Convert to array
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        $result = [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'latitude' => $this->getLatitude(),
+            'longitude' => $this->getLongitude(),
+            'images' => [],
+        ];
+
+        if ($this->getImages()->count()) {
+            foreach($this->getImages() as $image) {
+                $result['images'][] = $image->toArray();
+            }
+        }
+
+        return $result;
+    }
 }
