@@ -46,10 +46,11 @@ class Entry
      **/
     private $images;
 
-    public function __construct()
-    {
-        $this->images = new ArrayCollection();
-    }
+    /**
+     * @ORM\OneToOne(targetEntity="Image")
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
+     **/
+    private $image;
 
     /**
      * @return int
@@ -60,19 +61,19 @@ class Entry
     }
 
     /**
-     * @return mixed
+     * @return Image
      */
-    public function getImages()
+    public function getImage()
     {
-        return $this->images;
+        return $this->image;
     }
 
     /**
-     * @param mixed $images
+     * @param Image $image
      */
-    public function setImages($images)
+    public function setImage($image)
     {
-        $this->images = $images;
+        $this->image = $image;
     }
 
     /**
@@ -135,13 +136,11 @@ class Entry
             'name' => $this->getName(),
             'latitude' => $this->getLatitude(),
             'longitude' => $this->getLongitude(),
-            'images' => [],
+            'image' => [],
         ];
 
-        if ($this->getImages()->count()) {
-            foreach($this->getImages() as $image) {
-                $result['images'][] = $image->toArray();
-            }
+        if ($this->getImage()) {
+            $result['image'] = $this->getImage();
         }
 
         return $result;

@@ -26,7 +26,7 @@ class EntryController
         $qb = $this->em->createQueryBuilder();
         $qb->select('e')
            ->from('HackdayProject\Entity\Entry', 'e')
-           ->leftJoin('e.images', 'i')
+           ->leftJoin('e.image', 'i')
            ->orderBy('e.id', 'DESC');
 
 

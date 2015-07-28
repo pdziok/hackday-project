@@ -27,35 +27,11 @@ class Image
     private $filename;
 
     /**
-     * @var Entry
-     *
-     * @ORM\ManyToOne(targetEntity="Entry", inversedBy="images")
-     * @ORM\JoinColumn(name="entry_id", referencedColumnName="id")
-     **/
-    private $entry;
-
-    /**
      * @return int
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return Entry
-     */
-    public function getEntry()
-    {
-        return $this->entry;
-    }
-
-    /**
-     * @param Entry $entry
-     */
-    public function setEntry(Entry $entry)
-    {
-        $this->entry = $entry;
     }
 
     /**
