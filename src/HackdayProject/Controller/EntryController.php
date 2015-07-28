@@ -19,9 +19,24 @@ class EntryController
         $this->em = $em;
     }
 
+    private function convertEntryToArray(Entry $entry)
+    {
+        $result = [
+            'id' => $entry->getId(),
+            'name' => $entry->getName(),
+            'latitude' => $entry->getLatitude(),
+            'longitude' => $entry->getLongitude(),
+        ];
+
+        return $result;
+    }
+
     public function getEntriesAction(Request $request)
     {
+        $entries = $this->em->getRepository('HackdayProject\Entity\Entry')->findAll();
+        $result = array_map([$this, 'convertEntryToArray'], $entries);
 
+        return new JsonResponse($result);
     }
 
     public function createEntryAction(Request $request)
@@ -37,13 +52,8 @@ class EntryController
         $this->em->persist($entry);
         $this->em->flush();
 
-        $result = [
-            'id' => $entry->getId(),
-            'name' => $entry->getName(),
-            'latitude' => $entry->getLatitude(),
-            'longitude' => $entry->getLongitude(),
-        ];
 
-        return new JsonResponse($result, 201);
+
+        return new JsonResponse($this->convertEntryToArray($entry), 201);
     }
 }
