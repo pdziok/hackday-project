@@ -215,8 +215,8 @@ class Entry
             'id' => $this->getId(),
             'name' => $this->getName(),
             'position' => [
-                'lat' => $this->getLatitude(),
-                'lng' => $this->getLongitude(),
+                'lat' => (float) $this->getLatitude(),
+                'lng' => (float) $this->getLongitude(),
             ],
             'image' => '',
             'description' => $this->getDescription() ?: '',

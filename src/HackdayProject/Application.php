@@ -39,6 +39,7 @@ class Application extends \Silex\Application
         $this->register(new JsonSchemaValidatorServiceProvider(), [
             'json.request.validator.schemaMap' => [
                 'entry.controller:createEntryAction' => 'entry.json',
+                'vote.controller:postVoteAction' => 'vote.json',
              ]
         ]);
         $this->before($this['json.request.validator']);
