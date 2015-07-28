@@ -42,11 +42,7 @@ class ImageController
         $this->em->persist($image);
         $this->em->flush($image);
 
-        return new JsonResponse(
-            [
-                'id' => $image->getId(),
-                'filename' => $image->getFilename()
-            ], 201);
+        return new JsonResponse($image->toArray(), 201);
     }
 
     public function getImageAction($id)
@@ -57,9 +53,6 @@ class ImageController
             throw new NotFound('Image cannot be found');
         }
 
-        return new JsonResponse([
-            'id' => $image->getId(),
-            'filename' => $image->getFilename()
-        ]);
+        return new JsonResponse($image->toArray());
     }
 }

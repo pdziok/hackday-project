@@ -28,12 +28,25 @@ class EntryController
             'longitude' => $entry->getLongitude(),
         ];
 
+        if ($entry->getImages()->count()) {
+            foreach($entry->getImages() as $image) {
+                $result['images'][] = $image->toArray();
+            }
+        }
+
         return $result;
     }
 
     public function getEntriesAction(Request $request)
     {
-        $entries = $this->em->getRepository('HackdayProject\Entity\Entry')->findAll();
+        $qb = $this->em->createQueryBuilder();
+        $qb->select('e')
+           ->from('HackdayProject\Entity\Entry', 'e')
+           ->leftJoin('e.images', 'i')
+           ->orderBy('e.id', 'DESC');
+
+
+        $entries = $qb->getQuery()->getResult();
         $result = array_map([$this, 'convertEntryToArray'], $entries);
 
         return new JsonResponse($result);

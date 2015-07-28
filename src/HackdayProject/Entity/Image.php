@@ -73,4 +73,17 @@ class Image
     {
         $this->filename = $filename;
     }
+
+    /**
+     * Convert to array
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'filename' => $this->getFilename()
+        ];
+    }
 }
