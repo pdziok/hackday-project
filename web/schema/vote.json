@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Entry",
+  "description": "Entry payload description",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "value": {
+      "type": "integer",
+      "enum": [1, -1]
+    },
+    "entry_id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "value",
+    "entry_id"
+  ]
+}
