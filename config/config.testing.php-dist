@@ -24,6 +24,7 @@ return [
                     "type" => "annotation",
                     "namespace" => "HackdayProject\\Entity",
                     "path" => ROOT_PATH . "/src/HackdayProject/Entity",
+                    "use_simple_annotation_reader" => false,
                 ],
             ],
         ],
