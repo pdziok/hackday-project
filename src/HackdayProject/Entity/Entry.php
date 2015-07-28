@@ -42,15 +42,20 @@ class Entry
     private $longitude;
 
     /**
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="entry")
-     **/
-    private $images;
-
-    /**
      * @ORM\OneToOne(targetEntity="Image")
      * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
      **/
     private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Vote", mappedBy="entry")
+     **/
+    private $votes;
+
+    public function __construct()
+    {
+        $this->votes = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -125,6 +130,33 @@ class Entry
     }
 
     /**
+     * @return mixed
+     */
+    public function getVotes()
+    {
+        return $this->votes;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOverallRating()
+    {
+        $overallRating = 0;
+        /** @var Vote $vote */
+        foreach ($this->votes as $vote) {
+            $overallRating += $vote->getValue();
+        }
+
+        return $overallRating;
+    }
+
+    public function getVotesCount()
+    {
+        return $this->votes->count();
+    }
+
+    /**
      * Convert to array
      *
      * @return array
@@ -137,6 +169,8 @@ class Entry
             'latitude' => $this->getLatitude(),
             'longitude' => $this->getLongitude(),
             'image' => [],
+            'rating' => $this->getOverallRating(),
+            'votesCount' => $this->getVotesCount()
         ];
 
         if ($this->getImage()) {
