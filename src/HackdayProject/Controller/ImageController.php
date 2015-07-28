@@ -4,6 +4,7 @@
  */
 namespace HackdayProject\Controller;
 
+use ApiProblem\NotFound;
 use Doctrine\ORM\EntityManager;
 use HackdayProject\Entity\Image;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -46,5 +47,19 @@ class ImageController
                 'id' => $image->getId(),
                 'filename' => $image->getFilename()
             ], 201);
+    }
+
+    public function getImageAction($id)
+    {
+        $image = $this->em->find('HackdayProject\Entity\Image', $id);
+
+        if (!$image) {
+            throw new NotFound('Image cannot be found');
+        }
+
+        return new JsonResponse([
+            'id' => $image->getId(),
+            'filename' => $image->getFilename()
+        ]);
     }
 }

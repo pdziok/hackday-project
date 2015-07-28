@@ -29,5 +29,12 @@ return [
                 'post'
             ],
         ],
+        [
+            'pattern' => '/images/{id}',
+            'controller' => 'image.controller:getImageAction',
+            'method' => [
+                'get'
+            ],
+        ],
     ],
 ];
