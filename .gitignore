@@ -11,4 +11,6 @@ data/build/*
 !data/build/.gitkeep
 test/unit/phpunit.xml
 test/end2end/config.json
-web/apidoc/*
+/web/apidoc/*
+/web/upload/*
+!/web/upload/.gitkeep

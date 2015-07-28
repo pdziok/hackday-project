@@ -22,5 +22,12 @@ return [
                 'post',
             ],
         ],
+        [
+            'pattern' => '/images/',
+            'controller' => 'image.controller:postImageAction',
+            'method' => [
+                'post'
+            ],
+        ],
     ],
 ];
