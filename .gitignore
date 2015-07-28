@@ -1,0 +1,14 @@
+config/config.php
+vendor/
+node_modules/
+composer.phar
+composer.lock
+data/log/*
+!data/log/.gitkeep
+data/cache/*
+!data/cache/.gitkeep
+data/build/*
+!data/build/.gitkeep
+test/unit/phpunit.xml
+test/end2end/config.json
+web/apidoc/*

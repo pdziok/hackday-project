@@ -1,0 +1,19 @@
+{
+  "name": "tg-api",
+  "version": "0.0.0",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "apidoc": "*",
+    "chai": "^3.0.0",
+    "chai-http": "^1.0.0",
+    "gulp": "^3.9.0",
+    "spawn-mocha-parallel": "^1.3.1"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "apidoc": {
+    "title": "Topic Graph API doc"
+  }
+}
