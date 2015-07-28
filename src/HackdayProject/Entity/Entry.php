@@ -37,7 +37,7 @@ class Entry
     /**
      * @var float
      *
-     * @ORM\Column(name="latitude", type="decimal")
+     * @ORM\Column(name="longitude", type="decimal")
      */
     private $longitude;
 
