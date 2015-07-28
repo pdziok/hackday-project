@@ -214,9 +214,12 @@ class Entry
         $result = [
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'latitude' => $this->getLatitude(),
-            'longitude' => $this->getLongitude(),
-            'image' => null,
+            'position' => [
+                'lat' => $this->getLatitude(),
+                'lng' => $this->getLongitude(),
+            ],
+            'image' => '',
+            'description' => $this->getDescription() ?: '',
             'rating' => $this->getRating(),
             'overallRating' => $this->getOverallRating(),
             'votesCount' => $this->getVotesCount()
