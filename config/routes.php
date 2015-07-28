@@ -9,10 +9,17 @@ return [
             ],
         ],
         [
-            'pattern' => '/entry',
+            'pattern' => '/entries',
             'controller' => 'entry.controller:getEntriesAction',
             'method' => [
-                'get'
+                'get',
+            ],
+        ],
+        [
+            'pattern' => '/entries',
+            'controller' => 'entry.controller:createEntryAction',
+            'method' => [
+                'post',
             ],
         ],
     ],

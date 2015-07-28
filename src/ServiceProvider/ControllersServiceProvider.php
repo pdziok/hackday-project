@@ -56,8 +56,8 @@ class ControllersServiceProvider implements ServiceProviderInterface
     private function registerEntryController(SilexApplication $app)
     {
         $serviceName = 'entry.controller';
-        $app[$serviceName] = $app->share(function () {
-            return new EntryController();
+        $app[$serviceName] = $app->share(function () use ($app) {
+            return new EntryController($app['orm.em']);
         });
         $this->controllers[$serviceName] = IndexController::class;
     }
