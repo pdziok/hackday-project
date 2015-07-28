@@ -1,8 +1,11 @@
 <?php
 namespace HackdayProject;
 
+use Dbtlr\MigrationProvider\Provider\MigrationServiceProvider;
+use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use JDesrosiers\Silex\Provider\CorsServiceProvider;
 use Igorw\Silex\ConfigServiceProvider;
+use Knp\Provider\ConsoleServiceProvider;
 use MJanssen\Provider\RoutingServiceProvider;
 use ServiceProvider\ControllersServiceProvider;
 use ServiceProvider\UtilsServiceProvider;
@@ -39,7 +42,13 @@ class Application extends \Silex\Application
 //        $this->before($this['json.request.validator']);
 
         $this->register(new DoctrineServiceProvider(), [
-            'dbs.options' => $this['config']['mysql']
+            'db.options' => $this['config']['mysql']
         ]);
+
+        $this->register(new ConsoleServiceProvider(), $this['config']['console']);
+        $this->register(new MigrationServiceProvider(), [
+            'db.migrations.path' => ROOT_PATH . '/resources/migrations',
+        ]);
+        $this->register(new DoctrineOrmServiceProvider, $this['config']['doctrine.orm']);
     }
 }

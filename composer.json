@@ -14,7 +14,9 @@
         "marcojanssen/silex-routing-service-provider": "~1.3",
         "jdesrosiers/silex-cors-provider": "~0.1",
         "crell/api-problem": "~1.7",
-        "doctrine/dbal": "~2.5"
+        "doctrine/dbal": "~2.5",
+        "dbtlr/silex-doctrine-migrations": "dev-master",
+        "dflydev/doctrine-orm-service-provider": "~1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.6",

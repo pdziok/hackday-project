@@ -1,0 +1,32 @@
+# TgApi.ACL.KeyPair.dcm.yml
+TgApi\ACL\KeyPair:
+  type: entity
+  table: key_pair
+  schema: topicgraph
+  indexes:
+    public_index:
+      columns: [ public ]
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    private:
+      type: string
+      length: 50
+    public:
+      type: string
+      length: 50
+  manyToMany:
+    canWrite:
+      targetEntity: TgApi\Publication\PublicationEntity
+      joinTable:
+        name: key_pair_can_write_publication
+        joinColumns:
+          key_pair_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          publication_id:
+            referencedColumnName: id
+

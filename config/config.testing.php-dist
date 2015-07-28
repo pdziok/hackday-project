@@ -9,5 +9,24 @@ return [
         'user' => 'MYSQL_WRITE_USER',
         'password' => 'MYSQL_WRITE_PASS',
         'charset'   => 'utf8',
+    ],
+    'console' => [
+        'console.name'              => 'Topic Graph API',
+        'console.version'           => '0.1.0',
+        'console.project_directory' => ROOT_PATH
+    ],
+    'doctrine.orm' => [
+        'orm.proxies_dir' => ROOT_PATH . '/resources/proxies',
+        'orm.em.options' => [
+            'connection' => 'mysql_write',
+            'mappings' => [
+                // Using actual filesystem paths
+                [
+                    "type" => "yml",
+                    "namespace" => "TgApi",
+                    "path" => ROOT_PATH."/resources/mappings",
+                ],
+            ],
+        ],
     ]
 ];

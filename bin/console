@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+set_time_limit(0);
+
+define('ROOT_PATH', realpath(__DIR__ . '/..'));
+
+$app = require_once ROOT_PATH . '/src/app.php';
+
+$application = $app['console'];
+$application->run();
+
+?>

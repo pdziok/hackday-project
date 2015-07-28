@@ -1,0 +1,29 @@
+TgApi\Publication\PublicationEntity:
+  type: entity
+  table: publication
+  schema: topicgraph
+  indexes:
+    slug_index:
+      columns: [ slug ]
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 50
+    slug:
+      type: string
+      length: 20
+      unique: true
+    mediaHouse:
+      type: string
+      length: 20
+      column: media_house
+    dataSource:
+      type: string
+      length: 20
+      column: data_source
+
