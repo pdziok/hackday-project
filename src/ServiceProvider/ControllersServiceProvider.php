@@ -5,6 +5,7 @@
 namespace ServiceProvider;
 
 use HackdayProject\IndexController;
+use HackdayProject\Controller\EntryController;
 use Silex\Application as SilexApplication;
 use Silex\ServiceProviderInterface;
 
@@ -21,6 +22,7 @@ class ControllersServiceProvider implements ServiceProviderInterface
     public function register(SilexApplication $app)
     {
         $this->registerIndexController($app);
+        $this->registerEntryController($app);
     }
 
     /**
@@ -43,6 +45,19 @@ class ControllersServiceProvider implements ServiceProviderInterface
         $serviceName = 'index.controller';
         $app[$serviceName] = $app->share(function () {
             return new IndexController();
+        });
+        $this->controllers[$serviceName] = IndexController::class;
+    }
+
+    /**
+     * @param SilexApplication $app
+     * @return array
+     */
+    private function registerEntryController(SilexApplication $app)
+    {
+        $serviceName = 'entry.controller';
+        $app[$serviceName] = $app->share(function () {
+            return new EntryController();
         });
         $this->controllers[$serviceName] = IndexController::class;
     }

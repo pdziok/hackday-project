@@ -8,5 +8,12 @@ return [
                 'get'
             ],
         ],
+        [
+            'pattern' => '/entry',
+            'controller' => 'entry.controller:getEntriesAction',
+            'method' => [
+                'get'
+            ],
+        ],
     ],
 ];
