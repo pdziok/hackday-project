@@ -140,7 +140,7 @@ class Entry
         ];
 
         if ($this->getImage()) {
-            $result['image'] = $this->getImage();
+            $result['image'] = $this->getImage()->toArray();
         }
 
         return $result;
