@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Entry",
+  "description": "Entry payload description",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "number"
+    },
+    "longitude": {
+      "type": "number"
+    },
+    "image_id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "name",
+    "latitude",
+    "longitude",
+    "image_id"
+  ]
+}
