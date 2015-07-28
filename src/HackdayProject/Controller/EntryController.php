@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use HackdayProject\Entity\Entry;
 use Doctrine\ORM\EntityManager;
+use ApiProblem\ApiProblemException;
 
 class EntryController
 {
@@ -95,9 +96,10 @@ class EntryController
             ->findOneById($entryData['image_id']);
 
         if (!$image) {
-            return new JsonResponse(
-                ['error' => 'Image not found by id: ' . $entryData['image_id']],
-                422
+            throw new ApiProblemException(
+                'Unprocessable entity',
+                422,
+                'Image not found by id: ' . $entryData['image_id']
             );
         }
 
