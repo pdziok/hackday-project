@@ -30,14 +30,14 @@ class Entry
     /**
      * @var float
      *
-     * @ORM\Column(name="latitude", type="decimal")
+     * @ORM\Column(name="latitude", type="decimal", precision=10, scale=8)
      */
     private $latitude;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="longitude", type="decimal")
+     * @ORM\Column(name="longitude", type="decimal", precision=11, scale=8)
      */
     private $longitude;
 
