@@ -68,6 +68,18 @@ class EntryController
         $entry->setLatitude($entryData['latitude']);
         $entry->setLongitude($entryData['longitude']);
 
+        $image = $this->em->getRepository('HackdayProject\\Entity\\Image')
+            ->findOneById($entryData['image_id']);
+
+        if (!$image) {
+            return new JsonResponse(
+                ['error' => 'Image not found by id: ' . $entryData['image_id']],
+                422
+            );
+        }
+
+        $entry->setImage($image);
+
         $this->em->persist($entry);
         $this->em->flush();
 
