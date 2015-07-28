@@ -42,6 +42,13 @@ class Entry
     private $longitude;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=2047)
+     */
+    private $description;
+
+    /**
      * @ORM\OneToOne(targetEntity="Image")
      * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
      **/
@@ -135,6 +142,25 @@ class Entry
     public function getVotes()
     {
         return $this->votes;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     * @return $this
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
     }
 
     /**

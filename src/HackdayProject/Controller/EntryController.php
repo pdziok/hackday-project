@@ -89,6 +89,7 @@ class EntryController
         $entry->setName($entryData['name']);
         $entry->setLatitude($entryData['latitude']);
         $entry->setLongitude($entryData['longitude']);
+        $entry->setDescription($entryData['description']);
 
         $image = $this->em->getRepository('HackdayProject\\Entity\\Image')
             ->findOneById($entryData['image_id']);
