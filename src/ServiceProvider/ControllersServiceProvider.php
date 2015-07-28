@@ -5,6 +5,7 @@
 namespace ServiceProvider;
 
 use HackdayProject\Controller\ImageController;
+use HackdayProject\Controller\VoteController;
 use HackdayProject\IndexController;
 use HackdayProject\Controller\EntryController;
 use Silex\Application as SilexApplication;
@@ -25,6 +26,7 @@ class ControllersServiceProvider implements ServiceProviderInterface
         $this->registerIndexController($app);
         $this->registerEntryController($app);
         $this->registerImageController($app);
+        $this->registerVoteController($app);
     }
 
     /**
@@ -75,5 +77,18 @@ class ControllersServiceProvider implements ServiceProviderInterface
             return new ImageController($app['orm.em']);
         });
         $this->controllers[$serviceName] = ImageController::class;
+    }
+
+    /**
+     * @param SilexApplication $app
+     * @return array
+     */
+    private function registerVoteController(SilexApplication $app)
+    {
+        $serviceName = 'vote.controller';
+        $app[$serviceName] = $app->share(function ($app) {
+            return new VoteController($app['orm.em']);
+        });
+        $this->controllers[$serviceName] = VoteController::class;
     }
 }

@@ -106,4 +106,14 @@ class Vote
 
         return $this;
     }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'value' => $this->getValue(),
+            'user' => $this->getUser(),
+            'entry_id' => $this->getEntry()->getId()
+        ];
+    }
 }

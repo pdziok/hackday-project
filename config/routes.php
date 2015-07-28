@@ -43,5 +43,12 @@ return [
                 'get'
             ],
         ],
+        [
+            'pattern' => '/votes/',
+            'controller' => 'vote.controller:postVoteAction',
+            'method' => [
+                'post'
+            ],
+        ],
     ],
 ];
