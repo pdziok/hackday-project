@@ -51,7 +51,7 @@ class EntryController
 
         $map = [
             'id' => 'e.id',
-            'rating' => 'rating',
+            'overallRating' => 'overallRating',
             'votesCount' => 'votesCount'
         ];
 
@@ -63,7 +63,7 @@ class EntryController
 
         $qb = $this->em->createQueryBuilder();
         $qb->select('e')
-            ->addSelect('(SELECT SUM(v.value) FROM HackdayProject\Entity\Vote v WHERE v.entry = e.id) as rating')
+            ->addSelect('(SELECT SUM(v.value) FROM HackdayProject\Entity\Vote v WHERE v.entry = e.id) as overallRating')
             ->addSelect('(SELECT COUNT(v2.id) FROM HackdayProject\Entity\Vote v2 WHERE v2.entry = e.id) as votesCount')
            ->from('HackdayProject\Entity\Entry', 'e')
            ->leftJoin('e.image', 'i')

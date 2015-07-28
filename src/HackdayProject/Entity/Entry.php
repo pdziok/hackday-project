@@ -151,6 +151,28 @@ class Entry
         return $overallRating;
     }
 
+    /**
+     * @return array
+     */
+    public function getRating()
+    {
+        $pluses = 0;
+        $minuses = 0;
+        /** @var Vote $vote */
+        foreach ($this->votes as $vote) {
+            if ($vote->getValue() > 0) {
+                $pluses++;
+            } else {
+                $minuses++;
+            }
+        }
+
+        return [
+            'pluses' => $pluses,
+            'minuses' => $minuses
+        ];
+    }
+
     public function getVotesCount()
     {
         return $this->votes->count();
@@ -169,7 +191,8 @@ class Entry
             'latitude' => $this->getLatitude(),
             'longitude' => $this->getLongitude(),
             'image' => null,
-            'rating' => $this->getOverallRating(),
+            'rating' => $this->getRating(),
+            'overallRating' => $this->getOverallRating(),
             'votesCount' => $this->getVotesCount()
         ];
 
