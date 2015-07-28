@@ -11,20 +11,19 @@ return [
         'charset'   => 'utf8',
     ],
     'console' => [
-        'console.name'              => 'Topic Graph API',
+        'console.name'              => 'Hackday Project',
         'console.version'           => '0.1.0',
         'console.project_directory' => ROOT_PATH
     ],
     'doctrine.orm' => [
         'orm.proxies_dir' => ROOT_PATH . '/resources/proxies',
         'orm.em.options' => [
-            'connection' => 'mysql_write',
             'mappings' => [
                 // Using actual filesystem paths
                 [
-                    "type" => "yml",
-                    "namespace" => "TgApi",
-                    "path" => ROOT_PATH."/resources/mappings",
+                    "type" => "annotation",
+                    "namespace" => "HackdayProject\\Entity",
+                    "path" => ROOT_PATH . "/src/HackdayProject/Entity",
                 ],
             ],
         ],
