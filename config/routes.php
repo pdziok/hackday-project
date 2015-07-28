@@ -16,6 +16,13 @@ return [
             ],
         ],
         [
+            'pattern' => '/entries/{id}',
+            'controller' => 'entry.controller:getEntryAction',
+            'method' => [
+                'get',
+            ],
+        ],
+        [
             'pattern' => '/entries',
             'controller' => 'entry.controller:createEntryAction',
             'method' => [

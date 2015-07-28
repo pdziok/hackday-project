@@ -168,7 +168,7 @@ class Entry
             'name' => $this->getName(),
             'latitude' => $this->getLatitude(),
             'longitude' => $this->getLongitude(),
-            'image' => [],
+            'image' => null,
             'rating' => $this->getOverallRating(),
             'votesCount' => $this->getVotesCount()
         ];

@@ -1,6 +1,7 @@
 <?php
 namespace HackdayProject\Controller;
 
+use ApiProblem\NotFound;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use HackdayProject\Entity\Entry;
@@ -19,7 +20,24 @@ class EntryController
         $this->em = $em;
     }
 
+    public function getEntryAction($id)
+    {
+        $qb = $this->em->createQueryBuilder();
+        $qb->select('e')
+            ->from('HackdayProject\Entity\Entry', 'e')
+            ->leftJoin('e.image', 'i')
+            ->where('e.id = ?1');
 
+        $qb->setParameter('1', $id);
+        /** @var Entry $entry */
+        $entry = $qb->getQuery()->getSingleResult();
+
+        if (!$entry) {
+            throw new NotFound('Entry not found');
+        }
+
+        return new JsonResponse($entry->toArray());
+    }
 
     public function getEntriesAction(Request $request)
     {
