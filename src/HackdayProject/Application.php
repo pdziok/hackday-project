@@ -21,7 +21,7 @@ class Application extends \Silex\Application
             new ConfigServiceProvider(__DIR__ . '/../../config/routes.php')
         );
 
-        $this->register(new RoutingServiceProvider('tg-api'));
+        $this->register(new RoutingServiceProvider('hackday-project'));
 
         $this->register(new ServiceControllerServiceProvider());
         $this->register(new ControllersServiceProvider());
@@ -32,15 +32,11 @@ class Application extends \Silex\Application
             'cors.allowOrigin' => '*',
         ));
         $this->after($this['cors']);
-        $this->register(new JsonSchemaValidatorServiceProvider(), [
-            'json.request.validator.schemaMap' => [
-                'article.controller:putArticlesAction' => 'article.json',
-                'tag.controller:putTagsAction' => 'tag.json',
-                'relationship.controller:postRelationshipsAction' => 'relationship.json',
-                'user.controller:putUsersAction' => 'user.json',
-            ]
-        ]);
-        $this->before($this['json.request.validator']);
+//        $this->register(new JsonSchemaValidatorServiceProvider(), [
+//            'json.request.validator.schemaMap' => [
+//            ]
+//        ]);
+//        $this->before($this['json.request.validator']);
 
         $this->register(new DoctrineServiceProvider(), [
             'dbs.options' => $this['config']['mysql']

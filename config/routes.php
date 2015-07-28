@@ -1,6 +1,6 @@
 <?php
 return [
-    'tg-api' => [
+    'hackday-project' => [
         [
             'pattern' => '/',
             'controller' => 'index.controller:getIndexAction',

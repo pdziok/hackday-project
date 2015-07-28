@@ -32,7 +32,7 @@
     },
     "autoload": {
         "psr-4": {
-            "TgApi\\": "src/HackdayProject/",
+            "HackdayProject\\": "src/HackdayProject/",
             "ServiceProvider\\": "src/ServiceProvider/",
             "ControllerProvider\\": "src/ControllerProvider/",
             "ApiProblem\\": "src/ApiProblem/",

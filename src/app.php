@@ -6,7 +6,7 @@ $config = include ROOT_PATH .'/config/config.php';
 $debug = isset($config['application_environment'])
     && $config['application_environment'] != 'production';
 
-$app = new HackDayProject\Application([
+$app = new HackdayProject\Application([
     'config' => $config,
     'debug' => $debug,
 ]);
