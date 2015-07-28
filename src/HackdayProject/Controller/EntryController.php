@@ -41,18 +41,35 @@ class EntryController
 
     public function getEntriesAction(Request $request)
     {
+        $order = $request->get('order', 'id DESC');
+        $order = str_replace('+', ' ', $order);
+        list($orderBy, $orderDirection) = explode(' ', $order);
+
+        if (!in_array($orderDirection, ['ASC', 'DESC'])) {
+            $orderDirection = 'DESC';
+        }
+
+        $map = [
+            'id' => 'e.id',
+            'rating' => 'rating'
+        ];
+
+        if (isset($map[$orderBy])) {
+            $orderBy = $map[$orderBy];
+        }
+
         $qb = $this->em->createQueryBuilder();
         $qb->select('e')
+            ->addSelect('(SELECT SUM(v.value) FROM HackdayProject\Entity\Vote v WHERE v.entry = e.id) as rating')
            ->from('HackdayProject\Entity\Entry', 'e')
            ->leftJoin('e.image', 'i')
-           ->orderBy('e.id', 'DESC');
-
+           ->orderBy($orderBy, $orderDirection);
 
         $entries = $qb->getQuery()->getResult();
 
         $result = [];
         foreach($entries as $entry) {
-            $result[] = $entry->toArray();
+            $result[] = $entry[0]->toArray();
         }
 
         return new JsonResponse($result);
